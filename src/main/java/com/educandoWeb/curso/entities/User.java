@@ -3,13 +3,23 @@ package com.educandoWeb.curso.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 // Interface chamada Serializable
 // Usa-se quando se quer que os objetos sejam transformados
 // em cadeias de bytes, para que o objeto trafegue na rede,
 // para que possa ser gravado em arquivos e etc
+@Entity
+@Table(name = "tb_user")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 	private String email;
