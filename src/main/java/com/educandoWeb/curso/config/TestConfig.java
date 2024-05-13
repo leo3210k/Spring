@@ -15,6 +15,7 @@ import com.educandoWeb.curso.repositories.UserRepository;
 // Primeiro caso de injeção de dependência (desacoplada) = Esta classe vai ter que ter uma
 // dependência pro UserRepository
 // O framework tem um mecanismo de injenção de dependência implícito, automático
+// Database seeding
 public class TestConfig implements CommandLineRunner {
 
 	// O próprio Spring, na hora que estiver rodando a aplicação,
