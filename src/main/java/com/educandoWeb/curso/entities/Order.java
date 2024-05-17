@@ -26,7 +26,8 @@ public class Order implements Serializable {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private Instant moment;
 	
-	@ManyToOne
+	
+	@ManyToOne // Transforma numa chave estrangeira
 	@JoinColumn(name = "client_id")
 	private User client;
 	
