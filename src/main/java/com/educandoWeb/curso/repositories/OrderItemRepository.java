@@ -1,5 +1,6 @@
 package com.educandoWeb.curso.repositories;
 
+import com.educandoWeb.curso.entities.OrderItem;
 import com.educandoWeb.curso.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -10,6 +11,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 // Não é necessário utilizar @Repository (como o @Component),
 // porque a classe ja está herdando do JpaRepository que já
 // está registrado como componente do Spring
-public interface OrderItemRepository extends JpaRepository<User, Long>{
+public interface OrderItemRepository extends JpaRepository<OrderItem, Long>{
 
 }
