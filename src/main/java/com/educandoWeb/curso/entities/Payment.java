@@ -1,5 +1,6 @@
 package com.educandoWeb.curso.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -16,6 +17,7 @@ public class Payment implements Serializable {
     private Instant moment;
 
     // Na classe dependente (OneToOne), você coloca o @MapsId
+    @JsonIgnore
     @OneToOne
     @MapsId
     private Order order;
