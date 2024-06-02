@@ -47,4 +47,14 @@ public class UserResource {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).body(obj);
 	}
+
+	// Se o usuário tiver pedidos, será dado código 500 Internal Server Error
+	// para não perder a integridade do banco de dados
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<Void> delete(@PathVariable Long id) {
+		service.delete(id);
+
+		// Código 204 = Resposta que não possui conteúdo
+		return ResponseEntity.noContent().build();
+	}
 }
