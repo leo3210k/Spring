@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.educandoWeb.curso.services.exception.DataBaseException;
 import com.educandoWeb.curso.services.exception.ResourceNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -50,10 +51,17 @@ public class UserService {
 		// getReferenceById = melhor que o findById, ele instancia
 		// um usuário mas não vai no banco de dados, só deixará um objeto monitorado
 		// pelo JPA, para só em seguida poder efetuar uma operação com o banco
-		User entity = repository.getReferenceById(id);
-		updateData(entity, obj);
+		try {
+			User entity = repository.getReferenceById(id);
+			updateData(entity, obj);
 
-		return repository.save(entity);
+			return repository.save(entity);
+		} catch (EntityNotFoundException e) {
+//		} catch (RuntimeException e) { Exceção mais genérica
+//			e.printStackTrace(); Imprimir o erro na tela
+
+			throw new ResourceNotFoundException(id);
+		}
 	}
 
 	private void updateData(User entity, User obj) {
